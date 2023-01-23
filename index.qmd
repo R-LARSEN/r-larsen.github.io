@@ -12,7 +12,9 @@ about:
   - text: CV 
     icon: file-text
     href: CV.pdf 
-
+  - text: LinkedIn 
+    icon: linkedin
+    href: https://www.linkedin.com/in/rebeccalarsen/ 
 ---
 
 :::{#hero-heading}

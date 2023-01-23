@@ -1,8 +1,8 @@
 ---
-title: "About"
+title: "EPPS 6323"
 ---
 
-About this site
+EPPS 6323 Course Work
 
 ```{r}
 1 + 1
