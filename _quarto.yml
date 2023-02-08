@@ -4,11 +4,27 @@ project:
 
 website:
   title: "r-larsen.github.io"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  navbar: 
+    right:
+    - href: index.qmd 
+      text: Home 
+    - href: about.qmd 
+      text: about 
+    - href: research.qmd 
+      text: Research 
+    - href: project.qmd 
+      text: Project 
+    - href: cv.pdf 
+      text: CV 
+    - text: Assignments 
+        menu: 
+        - href: assignment1.qmd 
+          text: assignment1 
+        - href: assignment2.qmd 
+          text: assignment2 
+        - href: assignment3.qmd 
+          text: assignment3
+
 
 format:
   html:
