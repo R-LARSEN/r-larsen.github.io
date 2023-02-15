@@ -10,13 +10,13 @@ website:
       text: Home 
     - href: about.qmd
       text: About 
-    - href: cv.pdf
+    - href: CV.pdf
       text: CV 
     - text: Assignments 
       menu: 
-      - href: Lab01.qmd
+      - href: Lab01.html
         text: Lab1
-      - href: Lab02.qmd 
+      - href: Lab02.html 
         text: Lab2
 
 
