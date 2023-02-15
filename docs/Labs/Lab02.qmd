@@ -10,6 +10,7 @@ editor: visual
 (Adapted from ISLR Chapter 3 Lab: Introduction to R)
 
 # clears all objects in memory for this R session
+
 rm(list=ls())
 
 ## Indexing Data using \[\]

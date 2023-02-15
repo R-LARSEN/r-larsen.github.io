@@ -18,6 +18,7 @@ website:
         text: Lab1
       - href: Lab02.html 
         text: Lab2
+      - href: Assignment2.qmd
 
 
 

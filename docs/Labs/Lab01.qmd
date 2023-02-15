@@ -8,7 +8,6 @@ title: "EPPS 6302: Lab01" author: "Karl Ho" format: html editor: visual ---
 
 ## Create object using the assignment operator (\<-, =)
 
-
 ```{r}
 x <- c(1,3,2,5)
 x
