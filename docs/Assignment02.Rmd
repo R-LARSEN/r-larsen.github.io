@@ -1,0 +1,37 @@
+---
+title: "Assignment02"
+author: "Rebecca Larsen"
+date: "2023-02-15"
+output: html_document
+---
+
+library(haven)
+TEDS_2016 <-
+read_stata("https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true")
+
+#Question: What problems do I encounter with dataset?# 
+##Answer: There are a significant number of missing values in the form of NA in the dataset. It is also unclear if the "0" values are true 0 or if they are a different way of indicating a missing value.##
+
+
+#Question: How to deal with missing values?# 
+##Answer: There are several methods to address missing data in a dataset.##
+  #1. Listwise deletion: Removing the entire row of data to not include in the analysis if there are any missing values in that row. We could first detect missingness through a visualization to understand the impact listwise deletion could have on our data. If the missing values are not random and if they reduce our sample size substantially, this is likely to impact the strength of findings and using the dataset.#
+  #2. Best guess imputation: 
+  #3. Multiple imputation: 
+  #4. Aggregate: If there is structure to the data, then we can aggregate so missing values do not have such an impact. For example, we could move from monthly to yearly.
+
+
+# Explore Relationship between Tondu and other variables# 
+lm.fit=lm(Tondu~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016)
+summary(lm.fit)
+
+#Explore Relationship between votesai and other variables# 
+lm.fit=lm(votetsai~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016)
+summary(lm.fit)
+
+#Frequency table# 
+TEDS_2016$Tondu<-as.numeric(TEDS_2016$Tondu,labels=c("Unification now”, “Status quo, unif. in future”, “Status quo, decide later", "Status quo forever", "Status quo, indep. in future", "Independence now”, “No response"))
+install.packages('epiDisplay')
+library(epiDisplay)
+tab1(TEDS_2016$Tondu, sort.group = "decreasing", cum.percent = TRUE)
+

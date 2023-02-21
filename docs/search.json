@@ -12,5 +12,12 @@
     "title": "Rebecca Larsen",
     "section": "",
     "text": "University of Texas at Dallas | Dallas, TX PhD in Public Policy and Political Economy | In Progress\nUniversity of Texas at Austin | Austin, TX Master of Science in Social Work | 2014 Master of Public Affairs | 2014\n\n\n\nTexas Tech University | Assistant Professor of Practice, Political Science | Sept 2021 - Present\nTexas Tech University | Regional Site Manager, Instructor | July 2016 - Sept 2021\nMcLennan Community College | Part-Time Government Instructor | Janary 2016 - Sept 2021"
+  },
+  {
+    "objectID": "docs/Labs/Assignment02.html",
+    "href": "docs/Labs/Assignment02.html",
+    "title": "Assignment02",
+    "section": "",
+    "text": "library(haven) TEDS_2016 <- read_stata(“https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true”)\n#Question: What problems do I encounter with dataset?# ##Answer: There are a significant number of missing values in the form of NA in the dataset. It is also unclear if the “0” values are true 0 or if they are a different way of indicating a missing value.##\n#Question: How to deal with missing values?# ##Answer: There are several methods to address missing data in a dataset.## #1. Listwise deletion: Removing the entire row of data to not include in the analysis if there are any missing values in that row. We could first detect missingness through a visualization to understand the impact listwise deletion could have on our data. If the missing values are not random and if they reduce our sample size substantially, this is likely to impact the strength of findings and using the dataset.# #2. Best guess imputation: #3. Multiple imputation: #4. Aggregate: If there is structure to the data, then we can aggregate so missing values do not have such an impact. For example, we could move from monthly to yearly.\n\nExplore Relationship between Tondu and other variables\nlm.fit=lm(Tondu~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(lm.fit)\n#Explore Relationship between votesai and other variables# lm.fit=lm(votetsai~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(lm.fit)\n#Frequency table# TEDS_2016\\(Tondu<-as.numeric(TEDS_2016\\)Tondu,labels=c(“Unification now”, “Status quo, unif. in future”, “Status quo, decide later”, “Status quo forever”, “Status quo, indep. in future”, “Independence now”, “No response”)) install.packages(‘epiDisplay’) library(epiDisplay) tab1(TEDS_2016$Tondu, sort.group = “decreasing”, cum.percent = TRUE)"
   }
 ]
