@@ -1,0 +1,14 @@
+---
+title: "Assignment01"
+author: "Rebecca Larsen"
+date: "2023-02-21"
+output: html_document
+---
+
+#a. Present a proposed hypothesis ##Hypothesis: How are natural deaths in custody framed by elected officials in media statements?
+
+#b. How data can be collected ##Data collection: Population of news coverage on jail deaths over particular period of time.
+
+#c. What methods could be considered? ##Text analysis to understand patterns and themes present in statements made by local officials.
+
+#d. How to start the data project? ##Begin by identifying best method for collecting news articles for analysis to avoid subjectivity or selection bias.
