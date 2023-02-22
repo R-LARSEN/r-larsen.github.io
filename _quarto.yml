@@ -14,10 +14,6 @@ website:
       text: CV 
     - text: Assignments 
       menu: 
-      - href: Lab01.html
-        text: Lab1
-      - href: Lab02.html 
-        text: Lab2
       - href: Assignment01.html 
         text: Assignment1
       - href: Assignment02.html 

@@ -108,8 +108,16 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Lab2</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../Assignment01.html">
+ <span class="dropdown-text">Assignment1</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../Assignment02.html">
  <span class="dropdown-text">Assignment2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Assignment03.html">
+ <span class="dropdown-text">Assignment3</span></a>
   </li>  
     </ul>
   </li>
@@ -128,7 +136,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#explore-relationship-between-tondu-and-other-variables" id="toc-explore-relationship-between-tondu-and-other-variables" class="nav-link active" data-scroll-target="#explore-relationship-between-tondu-and-other-variables">Explore Relationship between Tondu and other variables</a></li>
+  <li><a href="#identifies-which-observations-are-na" id="toc-identifies-which-observations-are-na" class="nav-link active" data-scroll-target="#identifies-which-observations-are-na">identifies which observations are NA</a></li>
+  <li><a href="#checking-to-see-if-any-missing-values-are-coded-other-than-na.-this-one-is--99" id="toc-checking-to-see-if-any-missing-values-are-coded-other-than-na.-this-one-is--99" class="nav-link" data-scroll-target="#checking-to-see-if-any-missing-values-are-coded-other-than-na.-this-one-is--99">Checking to see if any missing values are coded other than NA. This one is -99</a></li>
+  <li><a href="#create-the-missingness-map" id="toc-create-the-missingness-map" class="nav-link" data-scroll-target="#create-the-missingness-map">create the missingness map</a></li>
+  <li><a href="#explore-relationship-between-tondu-and-other-variables" id="toc-explore-relationship-between-tondu-and-other-variables" class="nav-link" data-scroll-target="#explore-relationship-between-tondu-and-other-variables">Explore Relationship between Tondu and other variables</a></li>
   </ul>
 </nav>
     </div>
@@ -164,13 +175,38 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>library(haven) TEDS_2016 &lt;- read_stata(“https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true”)</p>
-<p>#Question: What problems do I encounter with dataset?# ##Answer: There are a significant number of missing values in the form of NA in the dataset. It is also unclear if the “0” values are true 0 or if they are a different way of indicating a missing value.##</p>
-<p>#Question: How to deal with missing values?# ##Answer: There are several methods to address missing data in a dataset.## #1. Listwise deletion: Removing the entire row of data to not include in the analysis if there are any missing values in that row. We could first detect missingness through a visualization to understand the impact listwise deletion could have on our data. If the missing values are not random and if they reduce our sample size substantially, this is likely to impact the strength of findings and using the dataset.# #2. Best guess imputation: #3. Multiple imputation: #4. Aggregate: If there is structure to the data, then we can aggregate so missing values do not have such an impact. For example, we could move from monthly to yearly.</p>
+<p>rm(list=ls())</p>
+<p>library(haven) TEDS_2016 &lt;-read_stata(“https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true”)</p>
+<p><u><strong>Question: What problems do I encounter with dataset?</strong></u></p>
+<p><strong>Answer: There are a significant number of missing values in the form of NA in the dataset. It is also unclear if the “0” values are true 0 or if they are a different way of indicating a missing value.</strong></p>
+<p><u><strong>Question: How to deal with missing values?</strong></u></p>
+<p><strong>Answer: First identify missingness. Then, consider the several methods to address missing data in a dataset.</strong></p>
+<p><u><strong>Identify missingess:</strong></u></p>
+<section id="identifies-which-observations-are-na" class="level1">
+<h1>identifies which observations are NA</h1>
+<p>which(is.na(TEDS_2016)) #There were 2008 entries ommitted by removing the NA values#</p>
+</section>
+<section id="checking-to-see-if-any-missing-values-are-coded-other-than-na.-this-one-is--99" class="level1">
+<h1>Checking to see if any missing values are coded other than NA. This one is -99</h1>
+<p>which(TEDS_2016==-99) #No missing values were coded as -99.#</p>
+<p>missd &lt;- TEDS_2016[0,] for(i in 1:ncol(missd)) { missd[1,i] &lt;- length(which(is.na(TEDS_2016[,i])))</p>
+</section>
+<section id="create-the-missingness-map" class="level1">
+<h1>create the missingness map</h1>
+<p>missmap(TEDS_2016) dev.copy(pdf,“../figs/missmap.pdf”) dev.off()</p>
+<ol type="1">
+<li><p><strong>Listwise deletion</strong>: Removing the entire row of data to not include in the analysis if there are any missing values in that row. We could first detect missingness through a visualization to understand the impact listwise deletion could have on our data. If the missing values are not random and if they reduce our sample size substantially, this is likely to impact the strength of findings and using the dataset.</p></li>
+<li><p><strong>Best guess imputation</strong></p></li>
+<li><p><strong>Multiple imputation</strong></p></li>
+<li><p><strong>Aggregate</strong>: If there is structure to the data, then we can aggregate so missing values do not have such an impact. For example, we could move from monthly to yearly.</p></li>
+</ol>
+</section>
 <section id="explore-relationship-between-tondu-and-other-variables" class="level1">
 <h1>Explore Relationship between Tondu and other variables</h1>
-<p>lm.fit=lm(Tondu~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(lm.fit)</p>
-<p>#Explore Relationship between votesai and other variables# lm.fit=lm(votetsai~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(lm.fit)</p>
+<p>##Exploring variables with listwise deletion## fit1 &lt;- lm(Tondu~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(fit1)</p>
+<p>##Exploring variables with Variable Mean Imputation for Age which has NAs## TEDS_2016<span class="math inline">\(age_vmi &lt;- TEDS_2016\)</span>age TEDS_2016<span class="math inline">\(age_vmi[which(is.na(TEDS_2016\)</span>age))] &lt;- mean(TEDS_2016$age, na.rm=TRUE)</p>
+<p>fit2 &lt;- lm(Tondu~female+DPP+age_vmi+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(fit2)</p>
+<p>#Explore Relationship between votesai and other variables# fit3 &lt;-lm(votetsai~female+DPP+age+income+edu+Taiwanese+Econ_worse, data=TEDS_2016) summary(fit3)</p>
 <p>#Frequency table# TEDS_2016<span class="math inline">\(Tondu&lt;-as.numeric(TEDS_2016\)</span>Tondu,labels=c(“Unification now”, “Status quo, unif. in future”, “Status quo, decide later”, “Status quo forever”, “Status quo, indep. in future”, “Independence now”, “No response”)) install.packages(‘epiDisplay’) library(epiDisplay) tab1(TEDS_2016$Tondu, sort.group = “decreasing”, cum.percent = TRUE)</p>
 
 
