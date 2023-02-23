@@ -16,7 +16,7 @@ website:
       menu: 
       - href: Assignment01.html 
         text: Assignment1
-      - href: Assignment02.html 
+      - href: AssignmentTwo.Rmd 
         text: Assignment2
       - href: Assignment03.html 
         text: Assignment3
