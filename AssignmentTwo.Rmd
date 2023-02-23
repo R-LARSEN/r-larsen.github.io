@@ -5,7 +5,7 @@ date: "2023-02-22"
 output: html_document
 ---
 
-## LAB 1
+## LAB 1 
 
 ---
 ##HOW TO TURN REGULAR FILES INTO QUARTO DOCUMENTS##
@@ -98,8 +98,7 @@ y=x
 
 ```
 
-## Lab 2
-
+## Lab 2 
 # R Programmng Basic Commands
 
 (Adapted from ISLR Chapter 3 Lab: Introduction to R)
@@ -108,7 +107,7 @@ y=x
 
 rm(list=ls())
 
-## Indexing Data using []
+## Indexing Data using \[\]
 
 ```{r}
 A=matrix(1:16,4,4)
@@ -260,6 +259,7 @@ contrasts(ShelveLoc)
 summary(lm(medv~lstat*age,data=Boston))
 ```
 
+
 ## Assignment 2
 
 ```{r}
@@ -301,7 +301,5 @@ library(epiDisplay)
 tab1(TEDS_2016$Tondu, sort.group = "decreasing", cum.percent = TRUE)
 ```
 
-```{r}
-rmarkdown::render
-```
+
 
