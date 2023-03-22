@@ -11,7 +11,7 @@ about:
     href: mailto:rxl200028@utdallas.edu
   - text: CV 
     icon: file-text
-    href: CV.pdf 
+    href: CV_2.2023.pdf 
   - text: LinkedIn 
     icon: linkedin
     href: https://www.linkedin.com/in/rebeccalarsen/ 
