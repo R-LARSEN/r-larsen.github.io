@@ -14,13 +14,15 @@ website:
       text: CV 
     - text: Assignments 
       menu: 
-      - href: Assignment01.html 
+      - href: Assignment1.html 
         text: Assignment1
-      - href: AssignmentTwo.Rmd 
+      - href: Assignment2.html 
         text: Assignment2
-      - href: Assignment03.html 
+      - href: Assignment3.html 
         text: Assignment3
-      - href: Assignment05.pdf 
+      - href: Assignment4.html
+        text: Assignment4
+      - href: Assignment5.html
         text: Assignment5
 
 
