@@ -16,13 +16,13 @@ website:
       menu: 
       - href: Assignment1.html 
         text: Assignment1
-      - href: Assignment2.html 
+      - href: Assignment2.html
         text: Assignment2
       - href: Assignment3.html 
         text: Assignment3
       - href: Assignment4.html
         text: Assignment4
-      - href: Assignment5.html
+      - href: Assignment5html
         text: Assignment5
 
 
