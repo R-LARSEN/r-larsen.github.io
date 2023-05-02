@@ -10,7 +10,7 @@ website:
       text: Home 
     - href: about.qmd
       text: About 
-    - href: CV_2.2023.pdf
+    - href: CV.pdf
       text: CV 
     - text: Assignments 
       menu: 
