@@ -1,0 +1,161 @@
+---
+title: "Assignment5"
+author: "Rebecca Larsen"
+format: html
+editor: visual
+---
+
+# **Part 1: Text Mining Lab 1 by Dr. Karl Ho**
+
+### Load libraries
+
+```{r}
+# install and load pacman for package management
+if (!require("pacman", character.only = TRUE)) install.packages("pacman")
+library(pacman)
+# load libraries using pacman
+p_load("easypackages","XML","wordcloud","RColorBrewer","NLP","tm","quanteda","quanteda.textstats", "easypackages","rtweet","tidyverse","RColorBrewer","tidytext","syuzhet", "plotly")
+
+```
+
+### Download text data from website
+
+```{r}
+mlk_speech <-URLencode("http://www.analytictech.com/mb021/mlk.htm")
+```
+
+### Use htmlTreeParse function to read and parse paragraphs
+
+```{r}
+doc.html<- htmlTreeParse(mlk_speech, useInternal=TRUE)
+mlk <- unlist(xpathApply(doc.html, '//p', xmlValue))
+
+head(mlk, 3)
+
+words.vec <- VectorSource(mlk)
+```
+
+### Check class of words
+
+```{r}
+class(words.vec)
+```
+
+### Create Corpus and Turn words lowercase
+
+```{r}
+# Create Corpus object for preprocessing
+words.corpus <- Corpus(words.vec)
+inspect(words.corpus)
+# Turn all words to lower case
+words.corpus <- tm_map(words.corpus, content_transformer(tolower))
+```
+
+### Use tm_map to remove punctuation, numbers, and stopwords
+
+```{r}
+words.corpus <- tm_map(words.corpus, removePunctuation)
+words.corpus <- tm_map(words.corpus, removeNumbers)
+words.corpus <- tm_map(words.corpus, removeWords, stopwords("english"))
+#Can use same approach to remove symbols, specific words, etc. 
+```
+
+### Create a Term Document Matrix
+
+```{r}
+tdm <- TermDocumentMatrix(words.corpus)
+inspect(tdm)
+
+m <- as.matrix(tdm)
+wordCounts <- rowSums(m)
+wordCounts <- sort(wordCounts, decreasing=TRUE)
+head(wordCounts)
+```
+
+### Create a Word Cloud
+
+```{r}
+cloudFrame<-data.frame(word=names(wordCounts),freq=wordCounts)
+
+set.seed(1234)
+wordcloud(cloudFrame$word,cloudFrame$freq)
+wordcloud(names(wordCounts),wordCounts, min.freq=1,random.order=FALSE, max.words=200,scale=c(4,.5), rot.per=0.35,colors=brewer.pal(8,"Dark2"))
+```
+
+### \# N-gram with two to three words
+
+```{r}
+textstat_collocations(mlk, size = 2:3) 
+```
+
+## Re-running on Churchill's Finest Hour Speech
+
+```{r}
+# Run the program on Winston Churchill's Finest Hour speech?
+winston_speech <-URLencode("http://www.historyplace.com/speeches/churchill-hour.htm")
+```
+
+```{r}
+doc.html<- htmlTreeParse(winston_speech, useInternal=TRUE)
+winston <- unlist(xpathApply(doc.html, '//p', xmlValue))
+
+head(winston, 3)
+
+words.vec <- VectorSource(winston)
+```
+
+```{r}
+class(words.vec)
+```
+
+```{r}
+# Create Corpus object for preprocessing
+words.corpus <- Corpus(words.vec)
+inspect(words.corpus)
+# Turn all words to lower case
+words.corpus <- tm_map(words.corpus, content_transformer(tolower))
+```
+
+```{r}
+words.corpus <- tm_map(words.corpus, removePunctuation)
+words.corpus <- tm_map(words.corpus, removeNumbers)
+words.corpus <- tm_map(words.corpus, removeWords, stopwords("english"))
+```
+
+```{r}
+tdm <- TermDocumentMatrix(words.corpus)
+inspect(tdm)
+
+m <- as.matrix(tdm)
+wordCounts <- rowSums(m)
+wordCounts <- sort(wordCounts, decreasing=TRUE)
+head(wordCounts)
+```
+
+```{r}
+cloudFrame<-data.frame(word=names(wordCounts),freq=wordCounts)
+
+set.seed(1234)
+wordcloud(cloudFrame$word,cloudFrame$freq)
+wordcloud(names(wordCounts),wordCounts, min.freq=1,random.order=FALSE, max.words=200,scale=c(4,.5), rot.per=0.35,colors=brewer.pal(8,"Dark2"))
+```
+
+```{r}
+textstat_collocations(winston, size = 2:3) 
+```
+
+\-\-\-\-\-\-\-\-\--
+
+## Part 2: Sentiment_Tidytext01 Lab 
+
+by Dr. Karl Ho
+
+```{r}
+#Figure out how to mine data from a third party. Check notes. Then come back and do this Lab and the other. 
+```
+
+## Part 3: Sentiment_Syuzhet01 
+
+```{r}
+
+```
