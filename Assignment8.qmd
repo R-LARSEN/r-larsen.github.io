@@ -12,6 +12,8 @@ if (!require("pacman", character.only = TRUE)) install.packages("pacman")
 library(pacman)
 # load libraries using pacman
 p_load("ISLR", "MASS", "descr", "Smarket", "leaps", "tidyverse", "ggplot2", "ggthemes", "caret", "BiocManager")
+
+install.packages('BiocManager')
 ```
 
 ```{r}
@@ -114,7 +116,8 @@ points(3, summary1$bic[10], col = "darkred", cex = 2, pch = 20)
 
 ```{r}
 #Repeat 3, using forward stepwise selection and backward stepwise selection
-#library(caret)
+library(caret)
+#After much troubleshooting, caret would not load successfully on my computer. When running through posit, it did work and I was able to confirm that 3 variables is the optimal model. 
 
 
 #backward stepwise selection
